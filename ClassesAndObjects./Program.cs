@@ -72,8 +72,8 @@ Type: ");
 
 		Console.Write(@"
 Do you want On or Off TV?:
-1) Yes
-2) No
+1) On
+2) Off
 Choice - ");
 
         string TVFuncChoice = Console.ReadLine();
@@ -100,8 +100,8 @@ Choice - ");
 
         Console.Write(@"
 Do you want On or Off Fridge?:
-1) Yes
-2) No
+1) On
+2) Off
 Choice - ");
 
 		string fridgeFuncChoice = Console.ReadLine();
