@@ -9,12 +9,13 @@ public class MainLogic
 		Console.Write(@"
 Hello, Dev. - Johhny Kolbaya, 
 First Program can turn on or off your device!,
-Second Program is under development <3,
+Second Program can get reservation air ticket or hotel,
 choose task:
 0) Exit program
 
 1) Smart Devices
-2) 
+2) Reservation system
+
 Coice - ");
 		string choice = Console.ReadLine();
 
@@ -27,7 +28,7 @@ Coice - ");
 				Devices();
 				break;
 			case "2":
-				Main();
+				getReservation();
 				break;
 			default:
 				Console.Clear();
@@ -36,88 +37,79 @@ Coice - ");
 		}
     } // Main
 
-    static void Devices()
+	static void getReservation()
 	{
 		Console.Clear();
 
-		Console.Write("Enter device name: ");
-		string deviceName = Console.ReadLine();
+		Console.Write(@"What you want reservation?:
 
-		Console.Write(@"
-Enter device type:
-1) TV
-2) Fridge
-Type: ");
-		string deviceChoice = Console.ReadLine();
+1) Hotel
+2) Air ticket
 
-		switch (deviceChoice)
+Choice - ");
+
+		string choice = Console.ReadLine();
+
+		switch (choice)
 		{
 			case "1":
-				FunctionsTV(deviceName);
+				hotelReservation();
 				break;
 			case "2":
-				FunctionsFridge(deviceName);
+				airReservation();
 				break;
 			default:
 				Console.Clear();
-				Devices();
+				getReservation();
 				break;
 		}
-    } // Devices
+	} // GetReservation
 
-	static void FunctionsTV(string deviceName)
+	static void hotelReservation()
 	{
-        TV tv = new TV();
-        tv.modelName = deviceName;
+		Console.Clear();
 
-		Console.Write(@"
-Do you want On or Off TV?:
-1) On
-2) Off
-Choice - ");
+		Console.Write(@"What you want?:
 
-        string TVFuncChoice = Console.ReadLine();
+1) Delete Reservation
+2) Get Reservation");
 
-        switch (TVFuncChoice)
-        {
-            case "1":
-                tv.On();
-                break;
-            case "2":
-                tv.Off();
-                break;
-            default:
-                Console.Clear();
-                Devices();
-                break;
-        }
-    } // FunctionsTV
+		string hotelChoose = Console.ReadLine();
+		bool Status = false;
+		string Name;
 
-    static void FunctionsFridge(string deviceName)
-	{
-        Fridge fridge = new Fridge();
-        fridge.modelName = deviceName;
-
-        Console.Write(@"
-Do you want On or Off Fridge?:
-1) On
-2) Off
-Choice - ");
-
-		string fridgeFuncChoice = Console.ReadLine();
-
-		switch (fridgeFuncChoice)
+		switch(hotelChoose)
 		{
 			case "1":
-				fridge.On();
-				break;
+				if (Status)
+				{
+					Console.Clear();
+
+					Console.WriteLine("You already have reservation!\n");
+					hotelReservation();
+				}
+				else
+				{
+                    Console.Write("Enter hotel name: ");
+                    Name = Console.ReadLine();
+
+                    Console.WriteLine("Reservation was deleted");
+					Status = false;
+
+                    Hotel hotel = new Hotel();
+                    hotel.Name = Name;
+                    hotel.Status = Status;
+
+					hotel.DeleteReservation();
+                }
+				return;
 			case "2":
-				fridge.Off();
-				break;
-			default:
-				Console.Clear();
-				Devices();
-				break;
-		}
-	} // FunctionsFridge
-}
+                if (Status == false)
+                {
+                    Console.Write("Enter hotel name: ");
+					Name = Console.ReadLine();
+					Status = true;
+
+					Hotel hotel = new Hotel();
+					hotel.Name = Name;
+					hotel.Status = S
