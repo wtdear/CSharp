@@ -1,4 +1,3 @@
-// add count add optim path
 using System;
 using System.Collections.Generic;
 
@@ -53,9 +52,27 @@ class Program
 
         for (int i = 0; i < paths.Count; i++)
         {
-            Console.WriteLine($"Путь {i + 1}:");
+            Console.WriteLine($"Путь {i + 1} (шагов: {paths[i].Count - 1}):");
             PrintMazeWithPath(paths[i]);
             Console.WriteLine();
+        }
+
+        if (paths.Count > 0)
+        {
+            List<(int, int)> optimalPath = paths[0];
+            int minSteps = optimalPath.Count;
+
+            for (int i = 1; i < paths.Count; i++)
+            {
+                if (paths[i].Count < minSteps)
+                {
+                    minSteps = paths[i].Count;
+                    optimalPath = paths[i];
+                }
+            }
+
+            Console.WriteLine($"Оптимальный путь (шагов: {minSteps - 1}):");
+            PrintMazeWithPath(optimalPath);
         }
     }
 
